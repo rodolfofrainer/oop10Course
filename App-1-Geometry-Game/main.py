@@ -31,13 +31,13 @@ class GuiRectangle(Rectangle):
         canvas.goto(self.point1.x,self.point1.y)
         canvas.pendown()
 
-        canvas.forward(self.point1.x-self.point2.x)
+        canvas.forward(self.point2.x-self.point1.x)
         canvas.left(90)
-        canvas.forward(self.point1.y-self.point2.y)
+        canvas.forward(self.point2.y-self.point1.y)
         canvas.left(90)
-        canvas.forward(self.point1.x-self.point2.x)
+        canvas.forward(self.point2.x-self.point1.x)
         canvas.left(90)
-        canvas.forward(self.point1.y-self.point2.y)
+        canvas.forward(self.point2.y-self.point1.y)
         
         turtle.done()
 
