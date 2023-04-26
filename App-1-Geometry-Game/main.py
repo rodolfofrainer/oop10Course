@@ -26,7 +26,7 @@ class Rectangle:
     return (self.point2.x-self.point1.x)*(self.point2.y-self.point1.y)
 
 class GuiRectangle(Rectangle):
-    def draw_canvas(self,canvas):
+    def draw_in_canvas(self,canvas):
         canvas.penup()
         canvas.goto(self.point1.x,self.point1.y)
         canvas.pendown()
@@ -39,29 +39,35 @@ class GuiRectangle(Rectangle):
         canvas.left(90)
         canvas.forward(self.point2.y-self.point1.y)
         
-        turtle.done()
+        
 
-gui_rectangle = GuiRectangle(Point(randint(0,300),randint(0,300)),
-                    Point(randint(10,300),randint(10,300)))
+class GuiPoint(Point):
+  def draw_in_canvas(self, canvas, size=5, color='red'):
+    canvas.penup()
+    canvas.goto(self.x, self.y)
+    canvas.pendown()
+    canvas.dot(size, color)
+    
+
+#Create Rectangle object instance
+rectangle = GuiRectangle(Point(randint(0,400),randint(0,400)),
+                    Point(randint(10,400),randint(10,400)))
+
+#print rectangle coords
+print(f"""Rectangle Coord: {rectangle.point1.x}, {rectangle.point1.y} and \
+{rectangle.point2.x}, {rectangle.point2.y}""")
+
+#get point and area from user
+user_point = GuiPoint(float(input("Guess the x: ")),float(input('Guess the y: ')))
+user_area = float(input("Guess rectangle area: "))
+
+#calculate and print game results
+print("Was your point inside the rectangle?", user_point.falls_in_rectangle(rectangle))
+area_result = rectangle.calculate_area() - user_area
+print(f'You were off by: {area_result}')
 
 myturtle = turtle.Turtle()
+rectangle.draw_in_canvas(canvas=myturtle)
+user_point.draw_in_canvas(canvas=myturtle)
 
-gui_rectangle.draw_canvas(canvas=myturtle)
-
-
-# #Create Rectangle object instance
-# rectangle=Rectangle(Point(randint(0,400),randint(0,400)),
-#                     Point(randint(10,400),randint(10,400)))
-
-# #print rectangle coords
-# print(f"""Rectangle Coord: {rectangle.point1.x}, {rectangle.point1.y} and \
-# {rectangle.point2.x}, {rectangle.point2.y}""")
-
-# #get point and area from user
-# user_point = Point(float(input("Guess the x: ")),float(input('Guess the y: ')))
-# user_area = float(input("Guess rectangle area: "))
-
-# #calculate and print game results
-# print("Was your point inside the rectangle?", user_point.falls_in_rectangle(rectangle))
-# area_result = rectangle.calculate_area() - user_area
-# print(f'You were off by: {area_result}')
+turtle.done()
