@@ -48,6 +48,9 @@ class PdfReport:
         pdf = FPDF(orientation='P', unit='pt', format='A4')
         pdf.add_page()
 
+        # Add icon
+        pdf.image('files/house.png', w=30, h=30)
+
         # Add text
         pdf.set_font(family='Times', size=24, style='B')
         pdf.cell(
