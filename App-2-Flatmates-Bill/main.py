@@ -88,12 +88,20 @@ class PdfReport:
         pdf.output(f"{self.filename}.pdf")
 
 
-bill = Bill(amount=120, period="September 2022")
-john = Flatmate(name="John", days_in_house=20)
-marry = Flatmate(name="Marry", days_in_house=25)
+bill_total = float(input('Bill amount: '))
+bill_period = input('Bill period: ')
 
-john_pay = john.pays(bill, marry)
-marry_pay = marry.pays(bill, john)
+flatmate1_name = input('First flatmate name: ')
+flatmate1_period = int(
+    input(f'Amount of days {flatmate1_name.title()} stayed in house: '))
 
-pdf = PdfReport(filename='Report1')
-pdf.generate(flatmate1=john, flatmate2=marry, bill=bill)
+flatmate2_name = input('Second flatmate name: ')
+flatmate2_period = int(
+    input(f'Amount of days {flatmate2_name.title()} stayed in house: '))
+
+the_bill = Bill(amount=bill_total, period=bill_period)
+flatmate1 = Flatmate(name=flatmate1_name, days_in_house=flatmate1_period)
+flatmate2 = Flatmate(name=flatmate2_name, days_in_house=flatmate2_period)
+
+pdf = PdfReport(filename=f'{the_bill.period}')
+pdf.generate(flatmate1=flatmate1, flatmate2=flatmate2, bill=the_bill)
