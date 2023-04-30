@@ -38,14 +38,14 @@ class PdfReport:
         pdf.set_font(family='Times', size=16)
         pdf.cell(
             w=175, h=40,
-            txt=f'{flatmate1.name}: {flatmate1_pay}',
+            txt=f'{flatmate1.name.title()}: {flatmate1_pay}',
             ln=1
         )
 
         # Flatmate2
         pdf.cell(
             w=175, h=40,
-            txt=f'{flatmate2.name}: {flatmate2_pay}',
+            txt=f'{flatmate2.name.title()}: {flatmate2_pay}',
             ln=1
         )
 
@@ -58,4 +58,4 @@ class PdfReport:
         )
 
         # Saves pdf
-        pdf.output(f"{self.filename}.pdf")
+        pdf.output(f"files/{self.filename}.pdf")
