@@ -1,20 +1,15 @@
-<MainScreen>:
+<CameraScreen>:
     GridLayout:
         cols:1
-        padding: 3
-        spacing: 3
-        Image:
-            id:img
-            size_hint_y: 80
-        TextInput:
-            id: user_query
-            size_hint_y: 10
+        Camera:
+            resolution: (640, 480)
+            play: False
         Button:
-            text: 'Search Image'
-            size_hint_y: 10
-            on_press:root.set_image()
+            text: 'Start Camera'
+        Button:
+            text: 'Capture Image'
 
 <RootWidget>:
-    MainScreen:
-        id: main_screen
-        name: 'Main Screen'
+    CameraScreen:
+        id: camera_screen
+        name:'camera_screen'
